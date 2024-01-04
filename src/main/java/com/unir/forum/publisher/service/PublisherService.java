@@ -1,6 +1,5 @@
 package com.unir.forum.publisher.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jms.annotation.JmsListener;
@@ -14,7 +13,6 @@ public class PublisherService {
 
     private final JmsTemplate topicJmsTemplate;
     private final JmsTemplate queueJmsTemplate;
-    private final ObjectMapper objectMapper;
 
     /**
      * Publica un mensaje en un topic.
@@ -37,6 +35,7 @@ public class PublisherService {
 
     /**
      * Escucha los mensajes que llegan a una cola.
+     * Para pruebas.
      * @param message - mensaje recibido.
      */
     @JmsListener( destination = "${forum.userId}")

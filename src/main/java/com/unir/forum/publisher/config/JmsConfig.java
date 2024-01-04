@@ -1,6 +1,5 @@
 package com.unir.forum.publisher.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.jms.ConnectionFactory;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -70,7 +69,6 @@ public class JmsConfig {
     /**
      * Este bean devuelve un objeto JmsListenerContainerFactory que se encarga de recibir los mensajes de las colas.
      * Sabemos que es para las colas porque hemos configurado la propiedad setPubSubDomain a false (por defecto es false).
-     * Además, setSubscriptionDurable a true indica que el subscriptor es duradero.
      * El ClientId es el identificador del subscriptor.
      * Gracias a este Bean podemos usar la anotación @JmsListener en los métodos de la clase PublisherService.
      *
@@ -86,14 +84,5 @@ public class JmsConfig {
         configurer.configure(factory, connectionFactory);
         factory.setClientId("profesor");
         return factory;
-    }
-
-    /**
-     * Este bean devuelve un objeto ObjectMapper que se encarga de convertir los objetos a JSON y viceversa.
-     * @return ObjectMapper.
-     */
-    @Bean
-    public ObjectMapper objectMapper() {
-        return new ObjectMapper();
     }
 }
